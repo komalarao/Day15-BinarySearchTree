@@ -16,6 +16,7 @@ public class BinarySearchTree {
 		}
 	
 		INode root;
+		public static boolean flag = false;
 
 		BinarySearchTree() {
 
@@ -100,7 +101,27 @@ public class BinarySearchTree {
 	          
 	        // if none work
 	        return false;
-	    }
+	    } public void searchElement(INode temp, int value){  
+	        //Check whether tree is empty  
+	        if(root == null){  
+	          System.out.println("Tree is empty");  
+	        }  
+	        else{  
+	          //If value is found in the given binary tree then, set the flag to true  
+	          if(temp.key == value){  
+	            flag = true;  
+	               return;  
+	          }  
+	          //Search in left subtree  
+	          if(flag == false && temp.left != null){  
+	             searchElement(temp.left, value);  
+	          }  
+	          //Search in right subtree  
+	          if(flag == false && temp.right != null){  
+	             searchElement(temp.right, value);  
+	          }  
+	        }  
+	      }  
 	 
 
 		public static void main(String[] args) {
@@ -126,7 +147,15 @@ public class BinarySearchTree {
         if(tree.isFullTree(tree.root))
             System.out.print("The binary tree is full");
         else
-            System.out.print("The binary tree is not full");
+            System.out.println("The binary tree is not full");
+        
+        tree.searchElement(tree.root,16);
+        
+        if(flag == true)
+            System.out.println("Element is present in the binary tree");  
+        else
+            System.out.println("Element is not present in the binary tree");  
+
 		}
 
 }
